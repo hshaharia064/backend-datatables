@@ -7,6 +7,7 @@ const app = express();
 
 // write file
 app.get("/write-file", (req, res) => {
+  // first param is path, second is content inside that file, and third is error callback
   fs.writeFile("./public/output.txt", "This is a test message", (err) => {
     if (err) {
       return res.status(500).send("Unable to write file");
