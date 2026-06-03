@@ -59,7 +59,10 @@ app.get("/read-folder", (req, res) => {
       console.log(err);
       return;
     }
-    console.log(files); //files param gives an arrray of files
+    files.forEach((file) => {
+      console.log(file);
+    }); //files param gives an arrray of files
+    res.send("Files are shown in the console");
   });
 });
 
