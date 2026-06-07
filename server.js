@@ -67,6 +67,16 @@ app.get("/read-folder", (req, res) => {
   });
 });
 
+app.get("/rename-file", (req, res) => {
+  fs.rename("./public/output.txt", "./public/renamedOutput.txt", (err) => {
+    if (err) {
+      return res.status(500).send("file was not renamed");
+    }
+
+    res.send("The fille has been renamed successfully");
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
