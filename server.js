@@ -77,6 +77,17 @@ app.get("/rename-file", (req, res) => {
   });
 });
 
+app.get("/stream-read", (req, res) => {
+  const fileStream = fs.createReadStream("./public/renamedOutput.txt");
+  fileStream.on("open", () => {
+    fileStream.pipe(res);
+  });
+
+  fileStream.on("error", () => {
+    return res.status(500).send("Error streaming file");
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
