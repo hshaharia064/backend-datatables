@@ -111,6 +111,20 @@ app.get("/rename-dir", (req, res) => {
   });
 });
 
+// Delete folder
+
+app.get("/delete-folder", (req, res) => {
+  fs.rmdir("./public/renamedFolder", (err) => {
+    if (err) {
+      return res
+        .status(500)
+        .send("Folder not found or unable to delete folder");
+    }
+
+    res.send("folder deleted successfully");
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
