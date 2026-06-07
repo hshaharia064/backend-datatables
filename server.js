@@ -99,6 +99,18 @@ app.get("/create-dir", (req, res) => {
   });
 });
 
+// Folder rename
+
+app.get("/rename-dir", (req, res) => {
+  fs.rename("./public/NewFolder", "./public/renamedFolder", (err) => {
+    if (err) {
+      return res.status(500).send("Error renaming folder");
+    }
+
+    res.send("folder renamed successfully");
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
