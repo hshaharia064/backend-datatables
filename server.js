@@ -88,6 +88,17 @@ app.get("/stream-read", (req, res) => {
   });
 });
 
+// Folder creation
+app.get("/create-dir", (req, res) => {
+  fs.mkdir("./public/NewFolder", (err) => {
+    if (err) {
+      return res.status(500).send("Error creating folder");
+    }
+
+    res.send("Folder created successfully");
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
