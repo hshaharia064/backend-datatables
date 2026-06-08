@@ -242,6 +242,34 @@ app.get("/read-video", (req, res) => {
   });
 });
 
+// get file info
+app.get("/read-stats", (req, res) => {
+  fs.stat("./public/video.mp4", (err, stat) => {
+    if (err) {
+      return res.status(500).send("Something went wrong while appending data");
+    }
+
+    res.send(stat);
+    console.log("File : ", stat.isFile());
+    console.log("Folder : ", stat.isDirectory());
+  });
+});
+
+// access file
+app.get("/file-access", (req, res) => {
+  fs.stat("./public/video.mp4", (err, stat) => {
+    if (err) {
+      return res
+        .status(500)
+        .send("Something went wrong while accessing the file");
+    }
+
+    res.send("File found");
+    console.log("File : ", stat.isFile());
+    console.log("Folder : ", stat.isDirectory());
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
