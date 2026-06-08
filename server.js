@@ -125,6 +125,17 @@ app.get("/delete-folder", (req, res) => {
   });
 });
 
+app.get("/read-file", (req, res) => {
+  fs.readFile("./public/js-handbook.pdf", (err, data) => {
+    if (err) {
+      return res.status(500).send("Unable to read file");
+    }
+
+    res.setHeader("Content-Type", "application/pdf");
+    res.send(data);
+  });
+});
+
 // server start-----------------------------------
 app.listen(5000, () => {
   console.log("Express is running...");
