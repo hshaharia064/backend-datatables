@@ -141,6 +141,8 @@ app.get("/read-pdf", (req, res) => {
   });
 });
 
+// Read json
+
 app.get("/read-json", (req, res) => {
   const jsonStream = fs.createReadStream("./public/data.json");
   jsonStream.on("open", () => {
@@ -149,6 +151,27 @@ app.get("/read-json", (req, res) => {
 
   jsonStream.on("error", () => {
     return res.status(500).send("Json was not found");
+  });
+});
+
+// Write json
+
+app.get("/write-json", (req, res) => {
+  const data = {
+    id: 1,
+    username: "user_1",
+    email: "user1@example.com",
+    full_name: "User 1 Name",
+    is_active: false,
+    roles: ["admin"],
+  };
+
+  fs.writeFile("./public/data.json", data, (err) => {
+    if (err) {
+      return res.status(500).send("Unable to write json");
+    }
+
+    res.send("Json written succesfully");
   });
 });
 
