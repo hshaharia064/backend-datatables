@@ -1,5 +1,6 @@
 import express from "express";
 import fs from "fs";
+import { json } from "stream/consumers";
 
 const app = express();
 
@@ -163,15 +164,81 @@ app.get("/write-json", (req, res) => {
     email: "user1@example.com",
     full_name: "User 1 Name",
     is_active: false,
-    roles: ["admin"],
+    roles: "admin",
   };
 
-  fs.writeFile("./public/data.json", data, (err) => {
+  fs.writeFile("./public/data.json", JSON.stringify(data), (err) => {
     if (err) {
       return res.status(500).send("Unable to write json");
     }
 
     res.send("Json written succesfully");
+  });
+});
+
+// Append json data
+
+app.get("/append-json", (req, res) => {
+  const newData = {
+    id: 2,
+    username: "user_2",
+    email: "user2@example.com",
+    full_name: "User 2 Name",
+    is_active: false,
+    roles: "user",
+  };
+  // 1. Read json(fetch)
+  // 2. convert to js obj
+  // 3. make new array , push to new array
+  // 4. write file again to send new array
+  fs.readFile("./public/data.json", (err, data) => {
+    if (err) {
+      return res.status(500).send("Unable to write file");
+    }
+
+    let jsonData;
+    jsonData = JSON.parse(data);
+
+    if (!Array.isArray(jsonData)) {
+      jsonData = [jsonData];
+    }
+
+    jsonData.push(newData);
+
+    fs.writeFile("./public/data.json", JSON.stringify(jsonData), (err) => {
+      if (err) {
+        return res
+          .status(500)
+          .send("Something went wrong while appending data");
+      }
+
+      res.send("Json data appended");
+    });
+  });
+});
+
+// Read image
+app.get("/read-img", (req, res) => {
+  fs.readFile("./public/resume.jpg", (err, data) => {
+    if (err) {
+      return res.status(500).send("Something went wrong while appending data");
+    }
+
+    res.setHeader("Content-Type", "image/jpg");
+    res.send(data);
+  });
+});
+
+// Read video
+
+app.get("/read-video", (req, res) => {
+  fs.readFile("./public/video.mp4", (err, data) => {
+    if (err) {
+      return res.status(500).send("Something went wrong while appending data");
+    }
+
+    res.setHeader("Content-Type", "video/mp4");
+    res.send(data);
   });
 });
 
