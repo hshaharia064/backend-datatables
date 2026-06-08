@@ -125,7 +125,7 @@ app.get("/delete-folder", (req, res) => {
   });
 });
 
-app.get("/read-file", (req, res) => {
+app.get("/read-pdf", (req, res) => {
   fs.readFile("./public/js-handbook.pdf", (err, data) => {
     if (err) {
       return res.status(500).send("Unable to read file");
