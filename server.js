@@ -67,6 +67,7 @@ app.get("/read-folder", (req, res) => {
   });
 });
 
+// Rename file
 app.get("/rename-file", (req, res) => {
   fs.rename("./public/output.txt", "./public/renamedOutput.txt", (err) => {
     if (err) {
@@ -76,6 +77,8 @@ app.get("/rename-file", (req, res) => {
     res.send("The fille has been renamed successfully");
   });
 });
+
+// stream creation for lower memory usage in the server
 
 app.get("/stream-read", (req, res) => {
   const fileStream = fs.createReadStream("./public/renamedOutput.txt");
@@ -125,6 +128,8 @@ app.get("/delete-folder", (req, res) => {
   });
 });
 
+// raeding pdf file
+
 app.get("/read-pdf", (req, res) => {
   fs.readFile("./public/js-handbook.pdf", (err, data) => {
     if (err) {
@@ -133,6 +138,17 @@ app.get("/read-pdf", (req, res) => {
 
     res.setHeader("Content-Type", "application/pdf");
     res.send(data);
+  });
+});
+
+app.get("/read-json", (req, res) => {
+  const jsonStream = fs.createReadStream("./public/data.json");
+  jsonStream.on("open", () => {
+    jsonStream.pipe(res);
+  });
+
+  jsonStream.on("error", () => {
+    return res.status(500).send("Json was not found");
   });
 });
 

@@ -1,0 +1,102 @@
+[
+    {
+        "id": 1,
+        "username": "user_1",
+        "email": "user1@example.com",
+        "full_name": "User 1 Name",
+        "is_active": false,
+        "roles": [
+            "admin"
+        ]
+    },
+    {
+        "id": 2,
+        "username": "user_2",
+        "email": "user2@example.com",
+        "full_name": "User 2 Name",
+        "is_active": true,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 3,
+        "username": "user_3",
+        "email": "user3@example.com",
+        "full_name": "User 3 Name",
+        "is_active": false,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 4,
+        "username": "user_4",
+        "email": "user4@example.com",
+        "full_name": "User 4 Name",
+        "is_active": true,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 5,
+        "username": "user_5",
+        "email": "user5@example.com",
+        "full_name": "User 5 Name",
+        "is_active": false,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 6,
+        "username": "user_6",
+        "email": "user6@example.com",
+        "full_name": "User 6 Name",
+        "is_active": true,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 7,
+        "username": "user_7",
+        "email": "user7@example.com",
+        "full_name": "User 7 Name",
+        "is_active": false,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 8,
+        "username": "user_8",
+        "email": "user8@example.com",
+        "full_name": "User 8 Name",
+        "is_active": true,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 9,
+        "username": "user_9",
+        "email": "user9@example.com",
+        "full_name": "User 9 Name",
+        "is_active": false,
+        "roles": [
+            "user"
+        ]
+    },
+    {
+        "id": 10,
+        "username": "user_10",
+        "email": "user10@example.com",
+        "full_name": "User 10 Name",
+        "is_active": true,
+        "roles": [
+            "user"
+        ]
+    }
+]
